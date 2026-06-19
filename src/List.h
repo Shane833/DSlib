@@ -43,5 +43,9 @@ void* List_remove(List* list, ListNode* value); // function to remove any given 
 // Finally we have Variable(V) which holds the reference to the current variable
 #define LIST_FOREACH(L, S, M, V) ListNode* _node = NULL; ListNode* V = NULL;\
 for(V = _node = L->S; _node != NULL; V = _node = _node->M)
+	
+// Additional functions
+List* List_split(List* list, unsigned int position); // Splits the list at the given point and returns the newly created list
+void List_merge(List* src, List* dest); // Merges both the list from dest to src
 
 #endif

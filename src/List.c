@@ -1,5 +1,5 @@
-#include <list.h>
-#include <dbg.h>
+#include <lcthw/list.h>
+#include <lcthw/dbg.h>
 
 List* List_create()
 {
@@ -8,14 +8,13 @@ List* List_create()
 
 void List_destroy(List* list)
 {
-    
 	LIST_FOREACH(list, first, next, cur){ // we go through the entire list
 		if(cur->prev){ // and if the previous exists we simply deallocate memory from it
 			free(cur->prev); // Visually looks cool *****->####
 		}
 	}
-    
-    /*
+	
+/*
     ListNode *cur = list->first;
     for(int i = 0;i < List_count(list);i++){
         if(cur->prev){
@@ -23,19 +22,18 @@ void List_destroy(List* list)
         }
         cur = cur->next;
     }
+*/
 	free(list->last); // at last we free the end node
 	free(list); // and then free the whole list
-	*/
 }
 
 void List_clear(List* list)
 {
 	// Traversing the whole list
-    
 	LIST_FOREACH(list, first, next, cur){
 		free(cur->value); // and freeing the value element of then ode
 	}
-    
+
     /*
     ListNode *cur = list->first;
     for(int i = 0;i < List_count(list);i++, cur=cur->next){
@@ -53,11 +51,9 @@ void List_clear(List* list)
 
 void List_clear_destroy(List* list)
 {
-    if(list){
 	// Combines both of the operations into a handy function
 	List_clear(list);
 	List_destroy(list);
-    }
 }
 
 void List_push(List* list, void* value)
@@ -148,4 +144,83 @@ void* List_remove(List* list, ListNode* node)
 	
 	error:
 		return result;
+}
+
+List* List_split(List* list, unsigned int position)
+{
+	// Say I have a list of 4 elements and then I want to split it at position 2
+	// Before : |1|->|2|->|3|->|4|->X, After : |1|->|2|->X and |3|->|4|->X 
+	// If we choose position 2 that means I would need to split it at the end of 2
+	// i.e. the next of 2 and we would need to make some changes
+	// -> Update the first of the new list
+	// -> Update the last of the new list
+	// -> Update the last of the original list
+	// -> Update both lists count 
+	check(list != NULL, "Invalid List!");
+	check(list->first && list->last, "List is empty!");
+	check(List_count(list) > 2, "Can't split a single element list!")
+	check((position != 0) && (position < List_count(list)), "Invalid position!");
+	
+	ListNode* node = NULL;
+	int pos = 1;
+	
+	// Linear Traveral upto the specified position
+	LIST_FOREACH(list, first, next, cur){
+		if(pos == position){
+			node = cur;
+			break;
+		}
+		pos++;
+	}
+	
+	// Creating a new List
+	List* new_list = List_create(); 
+	check(new_list != NULL, "Failed to create new list!");
+	
+	// Updating the first and last of the new list
+	new_list->first = node->next;
+	new_list->first->prev = NULL;
+	new_list->last = list->last;
+	
+	// Updating the last of the original list
+	list->last = node;
+	list->last->next = NULL;
+	
+	// Updating the count of both the list
+	new_list->count = List_count(list) - position;
+	list->count = position;
+	
+	return new_list;
+error:
+	return NULL;
+}
+
+void List_merge(List* src, List* dest)
+{
+	check(src != NULL, "Invalid List!");
+	check(dest != NULL, "Invalid List!");
+	
+	// okay so inorder to merge these two linked lists
+	// we must take into account some factors such as:
+	// -> Updating the end of the src list
+	// -> Updating the length of the src list
+	// -> Updating the first and last of the dest list
+	// -> Updating the length of the dest list
+	
+	// 1. Attach the last of the of src list to the first of the dest list
+	src->last->next = dest->first;
+	dest->first->prev = src->last;
+	
+	// 2. Update the end of the src list
+	src->last = dest->last;
+	
+	// 3. Update the length of the list
+	src->count = src->count + List_count(dest);
+	
+	// 4. Update the first and last of the dest list with length
+	dest->first = dest->last = NULL;
+	dest->count = 0;
+	
+error: // fallthrough
+	return;
 }
