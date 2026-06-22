@@ -1,4 +1,4 @@
-#include <darray.h>
+#include <DArray.h>
 #include <assert.h> // literally why is this here ??
 
 // FUNCTION DEFINTIONS

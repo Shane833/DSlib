@@ -2,7 +2,7 @@
 #define __PQUEUE_H__
 
 #include <stdlib.h>
-#include <lcthw/dbg.h>
+#include <dbg.h>
 
 /*  A Priority Queue is a special data structure which organize the elements ba- 
 	sed on their priority/dominance in the heirarchy. It is basically a complete

@@ -2,9 +2,9 @@
 #define _lcthw_Hashmap_h
 
 #include <stdint.h>
-#include <lcthw/darray.h>
-#include <lcthw/darray_algos.h>
-#include <lcthw/hashmap_algos.h>
+#include <DArray.h>
+#include <DArray_algos.h>
+#include <Hashmap_algos.h>
 #include <time.h>
 
 #define DEFAULT_NUMBER_OF_BUCKETS 100 

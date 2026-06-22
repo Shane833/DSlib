@@ -1,4 +1,4 @@
-#include <lcthw/darray_algos.h>
+#include <DArray_algos.h>
 
 // Forward declarations
 static void merge(DArray* array, int low, int mid, int high, DArray_compare cmp);

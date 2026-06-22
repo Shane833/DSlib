@@ -1,7 +1,7 @@
 #ifndef lcthw_list_algos_h
 #define lcthw_list_algos_h
 
-#include <lcthw/list.h>
+#include <List.h>
 
 // This is a function pointer for a custom compare function which the user
 // can provide defining how the comparision must be made between the lists

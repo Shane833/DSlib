@@ -1,5 +1,5 @@
-#include <lcthw/hashmap_algos.h>
-#include <lcthw/bstrlib.h>
+#include <Hashmap_algos.h>
+#include <bstrlib.h>
 
 constexpr uint32_t FNV_PRIME = 16777619;
 constexpr uint32_t FNV_OFFSET_BASIS = 2166136261;

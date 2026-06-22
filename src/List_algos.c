@@ -1,5 +1,5 @@
-#include <lcthw/list_algos.h>
-#include <lcthw/dbg.h>
+#include <List_algos.h>
+#include <dbg.h>
 
 // Swap function for swapping the values of the given listnodes
 inline void ListNode_swap(ListNode* a, ListNode* b)

@@ -2,10 +2,10 @@
 #define graph_algos_h
 
 #include <Graph.h>
-#include <queue.h>
+#include <Queue.h>
 #include <math.h>
 #include <dbg.h>
-#include <list.h>
+#include <List.h>
 
 typedef int (*Compare) (int a, int b);
 

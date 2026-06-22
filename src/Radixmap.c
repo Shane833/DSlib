@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <lcthw/radixmap.h>
-#include <lcthw/dbg.h>
+#include <radixmap.h>
+#include <dbg.h>
 
 // Function to initialize and create a radixmap
 RadixMap* RadixMap_create(size_t max)

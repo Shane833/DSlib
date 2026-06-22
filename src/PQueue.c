@@ -1,4 +1,4 @@
-#include <lcthw/PQueue.h>
+#include <PQueue.h>
 
 // Forward Function Declaration
 static int LeftChild(PQueue* q, int parent_index);

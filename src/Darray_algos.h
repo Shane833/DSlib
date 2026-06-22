@@ -1,9 +1,9 @@
 #ifndef darray_algos_h
 #define darray_algos_h
 
-#include <lcthw/darray.h>
-#include <lcthw/list.h>
-#include <lcthw/PQueue.h>
+#include <DArray.h>
+#include <List.h>
+#include <PQueue.h>
 	
 // We will use these macros as option for sorting the array
 #define DARRAY_QUICKSORT 1
