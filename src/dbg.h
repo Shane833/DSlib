@@ -10,7 +10,7 @@ void genericLog(const char *tag, const char *current_file, int current_line, con
 void genericDebug(const char *current_file, int current_line, const char *fmt, ...);
 void closeLog();
 
-#ifndef NDEBUG
+#ifdef NDEBUG
     #define debug(...) 
 #else
     #define debug(...) genericDebug(__FILE__, __LINE__, __VA_ARGS__)

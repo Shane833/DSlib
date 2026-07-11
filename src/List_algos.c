@@ -2,7 +2,7 @@
 #include <dbg.h>
 
 // Swap function for swapping the values of the given listnodes
-inline void ListNode_swap(ListNode* a, ListNode* b)
+static inline void ListNode_swap(ListNode* a, ListNode* b)
 {
 	void* temp = a->value;
 	a->value = b->value;
@@ -32,7 +32,7 @@ int List_bubble_sort(List* list, List_compare cmp)
 }
 
 // This is the merge function to be called after dividing into left and right lists
-inline List* List_merge(List* left, List* right, List_compare cmp)
+static inline List* list_merge(List* left, List* right, List_compare cmp)
 {
 	// List to store the result after merging the two lists
 	List* result = List_create();
@@ -95,5 +95,5 @@ List* List_merge_sort(List* list, List_compare cmp)
 		List_destroy(right);
 	
 	// Calling the merge function to merge the both lists
-	return List_merge(sort_left, sort_right, cmp);
+	return list_merge(sort_left, sort_right, cmp);
 }

@@ -4,12 +4,11 @@
 #include <stdlib.h>
 #include <dbg.h>
 
-typedef struct ForwardListNode ForwardListNode;
 
-ForwardListNode{
+struct ForwardListNode{
     void *data;
-    ForwardListNode *next;
-};
+    struct ForwardListNode *next;
+}ForwardListNode;
 
 typdef struct{
     size_t count;

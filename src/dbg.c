@@ -5,7 +5,6 @@
 #define xstr(a) str(a)
 #define str(a) #a
 
-
 static FILE *file = NULL;
 
 void genericDebug(const char *current_file, int current_line, const char *fmt, ...){

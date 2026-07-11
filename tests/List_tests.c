@@ -1,5 +1,5 @@
 #include "minunit.h"
-#include <list.h>
+#include <List.h>
 #include <assert.h>
 
 static List* list = NULL;
@@ -114,7 +114,7 @@ char* test_split()
 	
 	mu_assert(combined->last->value == test1, "Split failed!");
 	mu_assert(List_count(combined) == 1, "Split failed!");
-	
+    
 	List_destroy(combined);
 	List_destroy(splitted);
 	

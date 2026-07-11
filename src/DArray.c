@@ -89,9 +89,7 @@ int DArray_contract(DArray* array)
 	// No bcz atleast when we call this function manually we must be able to atleast, and since the expand rate is fixed
 	// multiple calls to it won't change the new_size until we don't go over the expand rate
 	int new_size = array->end < (int)array->expand_rate ? (int)array->expand_rate : array->end;
-	printf("New Size : %d, Array End : %d\n", new_size + 1, array->end); 
-	
-	//int new_size = array->end;
+
 	return DArray_resize(array, new_size + 1); // again passing the extra 1 for size to index conversion
 }
 
