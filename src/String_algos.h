@@ -3,14 +3,13 @@
 
 #include <bstrlib.h>
 #include <DArray.h>
-#include <sys/types.h> // for ssize_t
 
 typedef struct StringScanner{
 	bstring in;
 	const unsigned char* haystack;
-	ssize_t hlen;
+	size_t hlen;
 	const unsigned char* needle;
-	ssize_t nlen;
+	size_t nlen;
 	size_t skip_chars[UCHAR_MAX + 1]; // UCHAR_MAX = 255 is defined in limit.h
 }StringScanner;
 

@@ -1,10 +1,9 @@
 #include <String_algos.h>
 #include <limits.h>
 
-
 static inline void String_setup_skip_chars(size_t  				   *skip_chars,
 										   const unsigned char     *needle,
-										   ssize_t 				    nlen)
+										   size_t 				    nlen)
 {
 	size_t i = 0;
 	size_t last = nlen - 1; // last is the index of the last character in needle
@@ -19,9 +18,9 @@ static inline void String_setup_skip_chars(size_t  				   *skip_chars,
 }
 
 static inline const unsigned char* String_base_search(const unsigned char *haystack,
-													  ssize_t 			   hlen,
+													  size_t 			   hlen,
 													  const unsigned char *needle,
-													  ssize_t 			   nlen,
+													  size_t 			   nlen,
 													  size_t              *skip_chars)
 {
 	size_t i = 0;
@@ -66,9 +65,9 @@ int String_find(bstring in, bstring what)
 	const unsigned char* found = NULL;
 	
 	const unsigned char* haystack = (const unsigned char* )bdata(in);
-	ssize_t hlen = blength(in);
+	size_t hlen = blength(in);
 	const unsigned char* needle = (const unsigned char* )bdata(what);
-	ssize_t nlen = blength(what);
+	size_t nlen = blength(what);
 	size_t skip_chars[UCHAR_MAX + 1] = { 0 };
 	
 	String_setup_skip_chars(skip_chars, needle, nlen);
@@ -114,8 +113,8 @@ static inline void StringScanner_reset(StringScanner* scan)
 int StringScanner_scan(StringScanner* scan, bstring tofind)
 {
 	const unsigned char* found = NULL;
-	ssize_t found_at = 0;
-	
+    int found_at = 0;
+
 	if(scan->hlen <= 0){
 		StringScanner_reset(scan);
 		return -1;
@@ -140,7 +139,7 @@ int StringScanner_scan(StringScanner* scan, bstring tofind)
 		found_at = -1;
 	}
 	
-	return found_at;
+	return found_at; 
 }
 
 void StringScanner_destroy(StringScanner* scan)
