@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <radixmap.h>
+#include <Radixmap.h>
 #include <dbg.h>
 
 // Function to initialize and create a radixmap

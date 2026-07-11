@@ -32,18 +32,25 @@ $(TARGET): build $(OBJ)
 	ar rcs $@ $(OBJ)
 	ranlib $@
 
-
+ifeq ($(OS), Windows_NT)
 tests: $(TESTS)
 	powershell -ExecutionPolicy Bypass -File ./run_tests.ps1
+else
+tests: $(TESTS)
+	./run_tests.sh
+endif
 
 build:
 	-mkdir build
 
-remove:
-	-rmdir /S /Q build
-
-
+ifeq ($(OS), Windows_NT)
 clean:
 	-del /Q src\\*.o
 	-del /Q build\\*.a
 	-del /Q tests\\*.exe
+else
+clean:
+	-rm $(OBJ)
+	-rm $(TARGET)
+	-rm $(TESTS)
+endif

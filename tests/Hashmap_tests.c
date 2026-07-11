@@ -1,5 +1,5 @@
 #include "minunit.h"
-#include <hashmap.h>
+#include <Hashmap.h>
 #include <assert.h>
 #include <bstrlib.h>
 

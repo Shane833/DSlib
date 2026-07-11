@@ -3,6 +3,7 @@
 
 #include <bstrlib.h>
 #include <DArray.h>
+#include <sys/types.h> // for ssize_t
 
 typedef struct StringScanner{
 	bstring in;

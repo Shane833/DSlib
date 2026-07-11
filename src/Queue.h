@@ -1,4 +1,4 @@
-#include <list.h>
+#include <List.h>
 // Written after learning about the og way
 
 typedef List Queue;
