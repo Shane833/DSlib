@@ -8,7 +8,6 @@
 # The recipe used for linking is:
 # ‘$(CC) $(LDFLAGS) n.o $(LOADLIBES) $(LDLIBS)’
 
-CFLAGS = -Wall -Wextra -ggdb -Isrc -std=c23 -Wpedantic -DNDEBUG
 # The two options below will only be used in the linking phase
 LDFLAGS = -Lbuild
 LDLIBS = -lds
@@ -25,14 +24,23 @@ TESTS = $(patsubst %.c,%,$(TESTS_SRC))
 
 TARGET = build/libds.a
 
-all: build $(TARGET) tests
+debug: CFLAGS = -Wall -Wextra -ggdb -fPIC -Isrc -std=c23 -Wpedantic -DNDEBUG
+debug: build $(TARGET) tests
 
-$(TARGET): CFLAGS+=-fPIC
+release: CFLAGS = -Isrc -std=c23 -Wpedantic -fPIC -DNDEBUG
+release: build $(TARGET)
+	-mkdir release
+	-mkdir release\\include release\\lib
+	-mkdir release\\include\\DS
+	-powershell cp src/*.h release/include/DS/
+	-powershell cp build/*.a release/lib/
+
 $(TARGET): build $(OBJ)
 	ar rcs $@ $(OBJ)
 	ranlib $@
 
 ifeq ($(OS), Windows_NT)
+tests: CFLAGS =-Wall -Wextra -ggdb -Isrc -std=c23 -Wpedantic 
 tests: $(TESTS)
 	powershell -ExecutionPolicy Bypass -File ./run_tests.ps1
 else

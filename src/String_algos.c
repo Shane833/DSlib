@@ -3,7 +3,7 @@
 
 static inline void String_setup_skip_chars(size_t  				   *skip_chars,
 										   const unsigned char     *needle,
-										   size_t 				    nlen)
+										   ssize_t 				    nlen)
 {
 	size_t i = 0;
 	size_t last = nlen - 1; // last is the index of the last character in needle
@@ -18,9 +18,9 @@ static inline void String_setup_skip_chars(size_t  				   *skip_chars,
 }
 
 static inline const unsigned char* String_base_search(const unsigned char *haystack,
-													  size_t 			   hlen,
+													  ssize_t 			   hlen,
 													  const unsigned char *needle,
-													  size_t 			   nlen,
+													  ssize_t 			   nlen,
 													  size_t              *skip_chars)
 {
 	size_t i = 0;
@@ -65,9 +65,9 @@ int String_find(bstring in, bstring what)
 	const unsigned char* found = NULL;
 	
 	const unsigned char* haystack = (const unsigned char* )bdata(in);
-	size_t hlen = blength(in);
+	ssize_t hlen = blength(in);
 	const unsigned char* needle = (const unsigned char* )bdata(what);
-	size_t nlen = blength(what);
+	ssize_t nlen = blength(what);
 	size_t skip_chars[UCHAR_MAX + 1] = { 0 };
 	
 	String_setup_skip_chars(skip_chars, needle, nlen);
@@ -113,7 +113,7 @@ static inline void StringScanner_reset(StringScanner* scan)
 int StringScanner_scan(StringScanner* scan, bstring tofind)
 {
 	const unsigned char* found = NULL;
-    int found_at = 0;
+    ssize_t found_at = 0;
 
 	if(scan->hlen <= 0){
 		StringScanner_reset(scan);
@@ -127,7 +127,8 @@ int StringScanner_scan(StringScanner* scan, bstring tofind)
 	
     // uses the same function to find the needle in haystack, subsequent calls 
 	found = String_base_search(scan->haystack, scan->hlen, scan->needle, scan->nlen, scan->skip_chars); 
-	
+    
+    
 	if(found){
 		found_at = found - (const unsigned char*)bdata(scan->in);// 'in' stores the haystack used to 
 		scan->haystack = found + scan->nlen; // Simply updating the pointer just ahead of the last found index

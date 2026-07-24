@@ -24,7 +24,7 @@ char* test_find_and_scan()
 	
 	scan_i = StringScanner_scan(scan, &ALPHA);
 	mu_assert(scan_i > find_i, "should find another ALPHA after the second");
-	
+  
 	mu_assert(StringScanner_scan(scan, &ALPHA) == -1, "shouldn't find any ALPHA now");
 
 	StringScanner_destroy(scan);
@@ -111,11 +111,11 @@ char* all_tests()
     mu_run_test(test_find_and_scan);
     
 	// this is an idiom for commenting out section of code
-// #if 0
+    //#if 0
 	mu_run_test(test_scan_performance);
 	mu_run_test(test_find_performance);
 	mu_run_test(test_binstr_performance);
-// #endif
+    //#endif
 	return NULL;
 }
 

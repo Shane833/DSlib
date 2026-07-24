@@ -24,7 +24,7 @@ void List_destroy(List* list); // This function will take a list pointer and dea
 void List_clear(List* list); // This is equivalent to truncating a file i.e. we simply clear all the data and not the data structure itself
 void List_clear_destroy(List* list); // Basically combing both the functions into one
 
-#define List_count(A) ((A)->count) // macro to obtain the count of nodes from a list
+#define List_count(A) ((A) ? (A)->count : -1) // macro to obtain the count of nodes from a list
 #define List_first(A) ((A)->first != NULL ? (A)->first->value : NULL) // macro to obtain the value of the first element if it exists
 #define List_last(A) ((A)->last != NULL ? (A)->last->value : NULL) // macro to obtain the value of the last element if it exists
 

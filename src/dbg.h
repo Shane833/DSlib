@@ -8,7 +8,8 @@
 
 void genericLog(const char *tag, const char *current_file, int current_line, const char *fmt, ...);
 void genericDebug(const char *current_file, int current_line, const char *fmt, ...);
-void closeLog();
+void closeLog(); // This must only be used when you have defined the DEBUG_FILE
+                 // You should it call it the cleanup section of your main program
 
 #ifdef NDEBUG
     #define debug(...) 
